@@ -10,7 +10,7 @@ from telegram.ext import (
 )
 
 # Aapka naya Telegram Bot Token
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8371120664:AAH0UE_8Oljqjnb3uLHVjxX-Y7StBUEQq9k")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8371120664:AAHnuVhFbvJ0_IbWpTsKB5-Aex_s8Pdok08")
 
 # Users ke stars tracking ke liye dictionary
 user_stars_db = {}
