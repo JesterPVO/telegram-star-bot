@@ -9,7 +9,7 @@ from telegram.ext import (
     filters,
 )
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8927845242:AAE503v_u0hh4VQ-jIKbFC6ooBE33Y9Dp5M")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8371120664:AAHZfOa6GiDGtFe8N34oT6e7cb57zvfFTmU")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Default amount if none provided
