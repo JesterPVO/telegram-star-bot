@@ -8,14 +8,13 @@ from telegram.ext import (
     ContextTypes,
 )
 
-# Aap ka bot token
-BOT_TOKEN = "8371120664:AAGtlUkOnVxSTdR_j17ZklniSOGBCoHbBO"
+# Updated with your new token
+BOT_TOKEN = "8371120664:AAGgBpCm9rkrsgMEJnX1jbP0aIdBnbxsRPo"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """User se amount lekar utne Stars ka invoice bhejtah hai."""
-    amount = 10  # Default amount agar koi number na mile
+    """Sends an invoice based on the requested amount of Stars."""
+    amount = 10  # Default amount if no argument is provided
 
-    # Agar user ne /start 99 jaisa command bheja hai
     if context.args:
         try:
             amount = int(context.args[0])
@@ -30,14 +29,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         title="Access Purchase",
         description=f"Premium access for {amount} Stars",
         payload="custom-stars-payload",
-        provider_token="",  # Telegram Stars ke liye blank chhodna hota hai
-        currency="XTR",     # Telegram Stars ka currency code
+        provider_token="",  # Must be empty for Telegram Stars
+        currency="XTR",     # Currency code for Telegram Stars
         prices=prices,
         start_parameter="create-stars-invoice",
     )
 
 async def precheckout_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Payment confirm karne ke liye callback handler."""
+    """Answers the pre-checkout query to confirm payment."""
     query = update.pre_checkout_query
     if query.invoice_payload != "custom-stars-payload":
         await query.answer(ok=False, error_message="Something went wrong...")
@@ -45,7 +44,7 @@ async def precheckout_callback(update: Update, context: ContextTypes.DEFAULT_TYP
         await query.answer(ok=True)
 
 async def successful_payment_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Payment complete hone par response."""
+    """Handles successful payment confirmation."""
     await update.message.reply_text("Payment successful! Access granted.")
 
 if __name__ == "__main__":
@@ -55,5 +54,5 @@ if __name__ == "__main__":
     app.add_handler(PreCheckoutQueryHandler(precheckout_callback))
     app.add_handler(MessageHandler(filters.SUCCESSFUL_PAYMENT, successful_payment_callback))
 
-    print("Bot chalo ho gaya hai...")
+    print("Bot is starting...")
     app.run_polling()
