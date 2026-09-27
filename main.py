@@ -9,7 +9,7 @@ from telegram.ext import (
 )
 
 # Updated with your new token
-BOT_TOKEN = "8371120664:AAGgBpCm9rkrsgMEJnX1jbP0aIdBnbxsRPo"
+BOT_TOKEN = "8927845242:AAESu-AEV_piXtE5iP4e-NqIrG-Ujw9xY0s"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Sends an invoice based on the requested amount of Stars."""
