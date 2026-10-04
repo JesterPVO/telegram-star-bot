@@ -20,7 +20,7 @@ from telegram.error import TelegramError
 # ---------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8371120664:AAEXFlDG_YpGUO8wAcjNOh2owwxelrCBjC0")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8851024830:AAEDXVzHsQVSveR3j0oiavGPFMnwkqfVAY8")
 DB_FILE = "bot_data.db"
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "8581")
 
@@ -225,10 +225,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             title="Star Purchase",
             description=f"Payment for {amount} Stars",
             payload=f"stars-payload-{amount}",
-            provider_token="",  # Blank for Telegram Stars (XTR)
             currency="XTR",
             prices=[LabeledPrice(label="Stars", amount=amount)],
-            start_parameter="buy-stars",
         )
         await update.message.reply_text(f"Here is your payment link:\n{invoice_link}")
     except Exception as e:
@@ -446,7 +444,7 @@ async def _send_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE, re
         try:
             await context.bot.send_message(chat_id=uid, text=message)
             sent += 1
-            await asyncio.sleep(0.05)  # Rate limiting to follow Telegram API constraints
+            await asyncio.sleep(0.05)
         except TelegramError:
             failed += 1
 
